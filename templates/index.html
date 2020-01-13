@@ -1,0 +1,25 @@
+{% extends "base.html" %} {% block content %}
+
+<h2>Accident detector</h2>
+
+<div>
+    <form id="upload-file" method="POST" enctype="multipart/form-data" action="/predict">
+        <label for="imageUpload" class="upload-label">
+            Choose Video file
+        </label>
+        <input type="file" name="file" id="imageUpload" accept=".mp4, .png, .jpg, .jpeg">
+    </form>
+    <div>
+        <button type="button" class="btn btn-primary btn-lg " id="btn-predict">Predict!</button>
+    </div>
+
+    <div class="image-section" style="display:none;">
+        <div class="img-preview">
+            <div id="imagePreview">
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
