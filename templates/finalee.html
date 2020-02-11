@@ -1,0 +1,210 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>
+            Accident Detection
+        </title>
+        <style>
+        	.mainvid{
+        		position:relative;
+        		height:1000px;
+        		width:69%;
+            float:left;
+        		}
+        	
+            h1{
+                font-family: monospace;
+            }
+
+            ul {
+              list-style-type: none;
+              margin: 0;
+              padding: 0;
+              overflow: hidden;
+              background-color: #333;
+            }
+            
+            li {
+              float: left;
+            }
+            
+            li a {
+              display: block;
+              color: white;
+              text-align: center;
+              padding: 14px 16px;
+              text-decoration: none;
+            }
+            
+            li a:hover {
+              background-color: #111;
+              color: gold;
+            }
+            .sidebar{
+                width:30%;
+                float:right;
+                position:relative;
+            }
+            
+
+
+            
+            .img1{
+            	top:20%;
+              left:25%;
+                height:400px;
+                width:600px;  
+				        position: relative;
+                 
+            }
+            .img2{
+                top:15%;
+                height:400px;
+                width:100%;
+                position:relative;
+
+
+            }
+           
+             h2{
+                
+                top:60%;
+                margin-top: 20%;
+                margin-left:10%;
+                position:absolute;
+                font-family: monospace;
+
+            }
+            
+            .p1{
+                top:60%;
+                margin-left: 10%;
+                position:relative;
+                font-family: monospace;
+                font-size: 15px;
+
+            }
+
+            .p2{
+                top:70%;
+                margin-left: 10%;
+                
+                position:relative;
+                font-family: monospace;
+                font-size: 15px;
+            }
+            body{
+                background-color: lightgrey;
+               
+            }
+            .dropdown-content {
+  display: none;
+  position: relative;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 1;
+}
+.marg{
+	float:left;
+    height:100%;
+    top:10%;
+    border-left: 6px solid #333;
+
+    
+}
+.dropdown-content a {
+  color: gold;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+            .dropdown:hover .dropdown-content {
+      display: block;
+}
+            </style>
+    </head>
+    <body>
+        <h1>
+            ACCIDENT DETECTION
+        </h1>
+       
+
+          <ul>
+              
+                <li class="dropdown">
+                  <a href="javascript:void(0)" class="dropbtn">Hospitals</a>
+                  <div class="dropdown-content">
+                    <a href="https://fortisbangalore.com/contact-us">Fortis</a>
+                    <a href="https://www.apolloclinic.com/">Apollo</a>
+                    <a href="https://www.sagarhospitals.in/">Sagar</a>
+                  </div>
+                </li>
+                <li class="dropdown">
+                        <a href="javascript:void(0)" class="dropbtn">Camera Information</a>
+                        <div class="dropdown-content">
+                          <a href="https://fortisbangalore.com/contact-us">Camera 1</a>
+                          <a href="https://www.apolloclinic.com/">Camera 2</a>
+                          <a href="https://www.sagarhospitals.in/">Camera 3</a>
+                        </div>
+                      </li>
+                <li><a href="#news">About</a></li>
+              </ul>
+
+          <div class="mainvid">
+          <img class="img1" src="{{ url_for('video_feed') }}"/>
+		  </div>
+              
+                          <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+                          <script>
+
+
+                          var previous = null;
+                        var current = null;
+                        setInterval(function() {
+                            $.getJSON("http://localhost:5000/acc", function(json) {
+                                current = JSON.stringify(json);            
+                                if (previous && current && previous !== current) {
+                                    $('#myImageId').show();
+									$('#detection').show();
+                                    // location.reload();
+                                    
+
+                                }
+                                previous = current;
+                            });                       
+                        }, 2000); 
+
+
+                    </script>
+          <div class="sidebar">
+                <div id="detection" style="display:none"> 
+                
+                            <img id="myImageId" class="img2"src="{{ url_for('static', filename='cheat.jpg') }}" style="display:none"/>
+
+                            <h2>
+                                ACCIDENT DETAILS:
+                            
+                            </h2>
+                            <p id="region" class="p1" style="font-weight: bold;">
+                                Accident detected at Location 1
+
+                            </p>
+                            <p class="p2" style="font-weight: bold;">
+                                Emergency assistance required
+                            </p>
+                 </div>
+                            
+                
+          </div>
+          <div class="marg">
+
+          </div>
+
+          
+  </body>
+  </html>
+
+          
