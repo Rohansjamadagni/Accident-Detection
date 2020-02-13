@@ -5,13 +5,6 @@
             Accident Detection
         </title>
         <style>
-        	.mainvid{
-        		position:relative;
-        		height:1000px;
-        		width:69%;
-            float:left;
-        		}
-        	
             h1{
                 font-family: monospace;
             }
@@ -40,56 +33,59 @@
               background-color: #111;
               color: gold;
             }
+
             .sidebar{
-                width:30%;
-                float:right;
-                position:relative;
+                background-color: gray;
+                width:
             }
             
 
 
             
             .img1{
-            	top:20%;
-              left:25%;
-                height:400px;
-                width:600px;  
-				        position: relative;
+                
+                  display: block;
+                  margin-left:25%;
+                  margin-top: 10%;;
+                 margin-right: auto;
+                 top:50%;
+                 left:35%;
+                 margin-bottom: 1%;
                  
             }
             .img2{
                 top:15%;
-                height:400px;
-                width:100%;
-                position:relative;
+                margin-top: 1%;
+                left:75%;
+                position:absolute;
 
+       
 
             }
            
              h2{
                 
-                top:60%;
+                top:20%;
                 margin-top: 20%;
-                margin-left:10%;
+                left:75%;
                 position:absolute;
                 font-family: monospace;
 
             }
-            
             .p1{
-                top:60%;
-                margin-left: 10%;
-                position:relative;
+                top:25%;
+                margin-top: 20%;
+                left:75%;
+                position:absolute;
                 font-family: monospace;
                 font-size: 15px;
 
             }
-
             .p2{
-                top:70%;
-                margin-left: 10%;
-                
-                position:relative;
+                top:28%;
+                margin-top: 20%;
+                left:75%;
+                position:absolute;
                 font-family: monospace;
                 font-size: 15px;
             }
@@ -99,7 +95,7 @@
             }
             .dropdown-content {
   display: none;
-  position: relative;
+  position: absolute;
   background-color: #f9f9f9;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
@@ -107,8 +103,9 @@
   z-index: 1;
 }
 .marg{
-	float:left;
     height:100%;
+    position: absolute;
+    left:70%;
     top:10%;
     border-left: 6px solid #333;
 
@@ -153,9 +150,8 @@
                 <li><a href="#news">About</a></li>
               </ul>
 
-          <div class="mainvid">
+          
           <img class="img1" src="{{ url_for('video_feed') }}"/>
-		  </div>
               
                           <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
                           <script>
@@ -167,8 +163,9 @@
                             $.getJSON("http://localhost:5000/acc", function(json) {
                                 current = JSON.stringify(json);            
                                 if (previous && current && previous !== current) {
+                                    console.log('refresh');
                                     $('#myImageId').show();
-									$('#detection').show();
+                                    $('#accident').show();
                                     // location.reload();
                                     
 
@@ -180,29 +177,29 @@
 
                     </script>
           <div class="sidebar">
-                <div id="detection" style="display:none"> 
                 
-                            <img id="myImageId" class="img2"src="{{ url_for('static', filename='cheat.jpg') }}" style="display:none"/>
+                
+                            <img id="myImageId" alt="image of accident" class="img2"src="{{ url_for('static', filename='Final_image.jpg') }}" style="display:none;"/>
 
                             <h2>
                                 ACCIDENT DETAILS:
                             
                             </h2>
-                            <p id="region" class="p1" style="font-weight: bold;">
+						<div id="accident" style="display:none;">
+                            <p class="p1" style="font-weight: bold;">
                                 Accident detected at Location 1
 
                             </p>
                             <p class="p2" style="font-weight: bold;">
                                 Emergency assistance required
                             </p>
-                 </div>
+                        </div>
                             
                 
           </div>
           <div class="marg">
 
           </div>
-
           
   </body>
   </html>
